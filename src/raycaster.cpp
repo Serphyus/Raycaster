@@ -23,9 +23,6 @@ void Raycaster::cast_rays(glm::vec2 player, float player_angle) {
 
     glm::vec2 target = glm::vec2(0.0f, 0.0f);
 
-    // set color for all lines    
-    glColor3f(1.0f, 1.0f, 0.0f);
-
     for (int i = 0; i < RAY_COUNT; i++) {
         collition = false;
 
@@ -33,17 +30,26 @@ void Raycaster::cast_rays(glm::vec2 player, float player_angle) {
             target.x = player.x - (sin(angle) * depth);
             target.y = player.y + (cos(angle) * depth);
             
-            // replace with checking line intersection
-            // with each line in rect to avoid missing
-            // when moving too far over corners
             if (line_intersect_map(target)) {
-                glBegin(GL_LINES);
-                glVertex2f(player.x, player.y);
-                glVertex2f(target.x, target.y);
-                glEnd();
+                collition = true;
                 break;
             }
         }
+
+        // if line collidet set color to green
+        if (collition) {
+            glColor3f(0.0f, 1.0f, 0.0f);
+        }
+
+        // if line did not collide set color to red
+        else {
+            glColor3f(1.0f, 0.0f, 0.0f);
+        }
+
+        glBegin(GL_LINES);
+        glVertex2f(player.x, player.y);
+        glVertex2f(target.x, target.y);
+        glEnd();
 
         angle = angle + STEP_ANGLE;
     }

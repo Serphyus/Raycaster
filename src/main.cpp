@@ -42,7 +42,7 @@ std::vector<std::array<float, 4>> MAP = {
 
 
 void render_player(glm::vec2 player) {
-    glColor3f(0.0f, 0.75f, 0.0f);
+    glColor3f(0.9f, 0.9f, 0.0f);
     glRectf(player.x-5, player.y-5, player.x+5, player.y+5);
 }
 
