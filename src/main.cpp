@@ -7,9 +7,6 @@
 
 #include <GLFW/glfw3.h>
 #include <glm.hpp>
-#include <glm/gtx/string_cast.hpp>
-#include <glm/gtc/matrix_transform.hpp> 
-
 #include "raycaster.hpp"
 
 // constants
